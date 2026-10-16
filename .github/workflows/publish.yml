@@ -1,0 +1,36 @@
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mcp-registry-publish
+  cancel-in-progress: false
+
+env:
+  # Pinned so a publish is reproducible. An "invalid audience" error from the registry means this is too old.
+  MCP_PUBLISHER_VERSION: v1.8.1
+  REGISTRY_DOMAIN: teamhood.com
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install mcp-publisher
+        run: curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+
+      - name: Validate server.json
+        run: ./mcp-publisher validate
+
+      - name: Sign in with the teamhood.com DNS key
+        env:
+          MCP_PRIVATE_KEY: ${{ secrets.MCP_PRIVATE_KEY }}
+        run: ./mcp-publisher login dns --domain "$REGISTRY_DOMAIN" --private-key "$MCP_PRIVATE_KEY"
+
+      - name: Publish
+        run: ./mcp-publisher publish

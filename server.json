@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.teamhood/teamhood",
+  "title": "Teamhood",
+  "description": "Project management for matrix organizations: manage items, comments and time, and read workload.",
+  "version": "1.0.0",
+  "websiteUrl": "https://teamhood.com",
+  "repository": {
+    "url": "https://github.com/teamhooddev/teamhood-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://app.teamhood.com/favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": ["any"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.teamhood.com/public/v1/mcp"
+    }
+  ]
+}
