@@ -2,9 +2,9 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.teamhood/teamhood",
   "title": "Teamhood",
-  "description": "Project management for matrix organizations: manage items, comments and time, and read workload.",
-  "version": "1.0.0",
-  "websiteUrl": "https://teamhood.com",
+  "description": "Teamhood project management for matrix organizations: items, dependencies, time, capacity and teams.",
+  "version": "1.0.1",
+  "websiteUrl": "https://teamhood.com/mcp/",
   "repository": {
     "url": "https://github.com/teamhooddev/teamhood-mcp",
     "source": "github"
